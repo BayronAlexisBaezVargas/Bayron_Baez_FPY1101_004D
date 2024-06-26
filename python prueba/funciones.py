@@ -22,30 +22,55 @@ def agregar_estudiante():
             print("")
             break
 def ver_estudiantes():
-    for x in lista_estudiantes:
-        print(x)
-        print("")
+    if not lista_estudiantes:
+        print("No hay estudiantes en la lista.")
+    else:
+        for estudiante in lista_estudiantes:
+            print(estudiante)
+            print("")
 def modificar_estudiante():
-    print("")
+    ver_estudiantes()
+    if lista_estudiantes:
+        nombre = input("Ingrese el nombre del estudiante a modificar: ")
+        for estudiante in lista_estudiantes:
+            if estudiante["Nombre"] == nombre:
+                try:
+                    nuevo_nombre = input("Nuevo nombre del estudiante: ")
+                    nueva_edad = int(input("Nueva edad del estudiante: "))
+                    nuevo_curso = input("Nuevo curso del estudiante, Ejemplo (4° Basico): ")
+                    nuevo_promedio = float(input("Nuevo promedio del estudiante, Ejemplo (6.4): "))
+                except ValueError:
+                    print("Error, ingrese un valor valido")
+                else:
+                    estudiante["Nombre"] = nuevo_nombre
+                    estudiante["Edad"] = nueva_edad
+                    estudiante["Curso"] = nuevo_curso
+                    estudiante["Promedio"] = nuevo_promedio
+                    print("Estudiante modificado correctamente!")
+                    break
+        else:
+            print("El estudiante no se encuentra en la lista.")
 def eliminar_estudiante():
-        ver_estudiantes()
+    ver_estudiantes()
+    if lista_estudiantes:
         try:
-            op=input("ingrese un nombre del estudiante que desea borrar: ")
+            nombre = input("Ingrese el nombre del estudiante que desea borrar: ")
         except ValueError:
             print("Ingrese una opcion valida")
-        else: 
-            if :
-                lista_estudiantes.remove(op)
-                print("")
-                print("##ESTUDIANTE ELIMINADO CON EXITO##")
-                print("")
+        else:
+            for estudiante in lista_estudiantes:
+                if estudiante["Nombre"] == nombre:
+                    lista_estudiantes.remove(estudiante)
+                    print("Estudiante eliminado correctamente!")
+                    break
             else:
-                ("El estudiante no se encuentra en la lista")
+                print("El estudiante no se encuentra en la lista.")
 def guardar_archivo():
     with open("Estudiantes.txt","w",encoding="utf-8") as archivo:
-        archivo.write(ListaTitulo)
-        for x in lista_estudiantes:
-            archivo.write(x)
+        archivo.write(f"{ListaTitulo}")
+        for estudiante in lista_estudiantes:
+                archivo.write(f"\n{estudiante['Nombre']},{estudiante['Edad']},{estudiante['Curso']},{estudiante['Promedio']}")
+    print("Archivo creado exitosamente")
 def mostrar_menu():
         print("1.- Agregar estudiante")
         print("2-  Ver todos los estudiantes")
@@ -74,6 +99,7 @@ def menu():
             elif opcion==5:
                 guardar_archivo()
             elif opcion==6:
+                print("Saliendo del programa...")
                 break
             else:
                 print("Seleccione una opcion valida, intentelo de nuevo")
