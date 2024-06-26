@@ -1,6 +1,8 @@
+#NOMBRE: BAYRON BAEZ, BENJAMIN GUERRERO, RODRIGO RUIZ
 lista_estudiantes=[]
 ListaTitulo=["NOMBRE","EDAD","CURSO","PROMEDIO"]
 listacursos=["4° Basico","7° Basico","8° Basico", "1° Basico","2° Basico","3° Basico","5° Basico","6° Basico"]
+#Esta funcion sirve para agregar estudiantes
 def agregar_estudiante():
     while True:
         try:
@@ -21,6 +23,7 @@ def agregar_estudiante():
             print("Datos de estudiante ingresados correctamente")
             print("")
             break
+#Esta funcion sirve para mostrar los estudiantes
 def ver_estudiantes():
     if not lista_estudiantes:
         print("No hay estudiantes en la lista.")
@@ -28,6 +31,7 @@ def ver_estudiantes():
         for estudiante in lista_estudiantes:
             print(estudiante)
             print("")
+#Esta funcion sirve para modificar la lista de estudiantes
 def modificar_estudiante():
     ver_estudiantes()
     if lista_estudiantes:
@@ -50,6 +54,7 @@ def modificar_estudiante():
                     break
         else:
             print("El estudiante no se encuentra en la lista.")
+#Esta funcion sirve para eliminar estudiantes de la lista
 def eliminar_estudiante():
     ver_estudiantes()
     if lista_estudiantes:
@@ -65,12 +70,14 @@ def eliminar_estudiante():
                     break
             else:
                 print("El estudiante no se encuentra en la lista.")
+#Esta funcion sirve para guardar la lista en un archivo .txt
 def guardar_archivo():
     with open("Estudiantes.txt","w",encoding="utf-8") as archivo:
         archivo.write(f"{ListaTitulo}")
         for estudiante in lista_estudiantes:
                 archivo.write(f"\n{estudiante['Nombre']},{estudiante['Edad']},{estudiante['Curso']},{estudiante['Promedio']}")
     print("Archivo creado exitosamente")
+#Muestra el menu
 def mostrar_menu():
         print("1.- Agregar estudiante")
         print("2-  Ver todos los estudiantes")
@@ -79,6 +86,7 @@ def mostrar_menu():
         print("5.- Guardar coleccion en un archivo")
         print("6.- Salir del programa")
         print("")
+#Aqui se ejecutan las acciones
 def menu():
     print("")
     while True:
